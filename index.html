@@ -1,0 +1,395 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --f:#1a2e1a;--m:#3d6b4a;--s:#6fa67a;--c:#f4efe4;--b:#7a5230;--mi:#e8ede3;--g:#c8a84b;--dk:#0d1f0d;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--c);color:var(--f);overflow-x:hidden}
+
+/* NAV */
+nav{background:rgba(244,239,228,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,46,26,0.08);padding:0 clamp(1rem,4vw,2.5rem);display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:200;transition:box-shadow .3s}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--f);letter-spacing:.02em;display:flex;align-items:center;gap:6px}
+.logo-dot{width:8px;height:8px;background:var(--g);border-radius:50%;display:inline-block}
+.nav-links{display:flex;gap:clamp(.8rem,2vw,1.4rem);list-style:none;align-items:center}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--f);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--f)!important;color:var(--c)!important;opacity:1!important;padding:.42rem 1rem;border-radius:4px;font-size:.74rem!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--f);transition:all .3s;border-radius:2px}
+.mobile-menu{display:none;position:absolute;top:58px;left:0;right:0;background:rgba(244,239,228,0.98);backdrop-filter:blur(12px);padding:1rem 1.5rem;border-bottom:1px solid rgba(26,46,26,0.1);flex-direction:column;gap:.8rem;z-index:199}
+.mobile-menu a{font-size:.85rem;font-weight:500;color:var(--f);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;opacity:.7;padding:.4rem 0;border-bottom:1px solid rgba(26,46,26,0.06)}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dk)}
+.hero-bg{position:absolute;inset:0;background:url('IMAGES/TENT.JPEG') center/cover no-repeat;opacity:.4;transform:scale(1.05);animation:heroZoom 20s ease-in-out infinite alternate}
+@keyframes heroZoom{0%{transform:scale(1.05)}100%{transform:scale(1.12)}}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,31,13,.75) 0%,rgba(13,31,13,.3) 60%,rgba(13,31,13,.6) 100%)}
+.hero-content{position:relative;z-index:2;padding:clamp(2rem,8vw,5rem) clamp(1.5rem,6vw,5rem);max-width:720px;animation:fadeUp .9s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem}
+.eyebrow-line{width:28px;height:1.5px;background:var(--s)}
+.eyebrow-text{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--s);font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,8vw,5.5rem);line-height:1.02;color:#fff;margin-bottom:1.4rem;font-weight:600}
+.hero h1 em{color:var(--s);font-style:italic;font-weight:400}
+.hero-desc{font-size:clamp(.88rem,2vw,1rem);line-height:1.75;color:rgba(255,255,255,.65);max-width:440px;margin-bottom:2.4rem;font-weight:300;animation:fadeUp .9s .2s ease both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .35s ease both}
+.btn-fill{background:var(--g);color:#fff;padding:.85rem clamp(1.2rem,3vw,2rem);border:none;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border-radius:3px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .25s,transform .2s}
+.btn-fill:hover{background:#b8962e;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;padding:.85rem clamp(1.2rem,3vw,2rem);border:1.5px solid rgba(255,255,255,.3);font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border-radius:3px;text-decoration:none;display:inline-block;transition:border-color .25s,background .25s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.07)}
+.hero-stats{position:absolute;bottom:2.5rem;right:clamp(1.5rem,5vw,4rem);display:flex;gap:2.5rem;z-index:2;animation:fadeUp .9s .5s ease both}
+.stat{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:#fff;line-height:1}
+.stat-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+.stat-divider{width:1px;background:rgba(255,255,255,.15)}
+.hero-scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2;animation:fadeIn 1s 1s ease both;opacity:0}
+@keyframes fadeIn{to{opacity:1}}
+.scroll-pill{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.3);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}
+.scroll-dot{width:4px;height:8px;background:rgba(255,255,255,.5);border-radius:2px;animation:scrollBounce 1.8s ease-in-out infinite}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+.scroll-txt{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* SECTION BASE */
+section{padding:clamp(3.5rem,8vw,6rem) clamp(1.5rem,6vw,4.5rem)}
+.section-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
+.section-eyebrow .line{width:20px;height:1.5px;background:var(--m)}
+.section-eyebrow span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--m);font-weight:500}
+h2.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:600;color:var(--f);line-height:1.15;margin-bottom:.9rem}
+.sec-sub{font-size:.9rem;line-height:1.75;color:rgba(26,46,26,.6);max-width:500px;font-weight:300}
+
+/* ABOUT */
+.about-sec{background:var(--mi)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;margin-top:clamp(2rem,4vw,3.5rem)}
+.img-frame{position:relative}
+.img-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:2px}
+.img-badge{position:absolute;bottom:-1.2rem;right:-1.2rem;background:var(--f);color:var(--c);padding:1.2rem 1.4rem;text-align:center;min-width:110px}
+.img-badge strong{font-family:'Cormorant Garamond',serif;font-size:2.4rem;display:block;line-height:1;font-weight:600}
+.img-badge span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-top:2px;display:block}
+.about-text{padding-bottom:1rem}
+.about-body{font-size:.88rem;line-height:1.8;color:rgba(26,46,26,.65);margin:1.2rem 0 2rem;font-weight:300}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.feat-item{background:#fff;padding:1rem 1.1rem;border-radius:6px;border:1px solid rgba(26,46,26,.07);transition:transform .25s,box-shadow .25s}
+.feat-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,46,26,.08)}
+.feat-icon-wrap{width:32px;height:32px;background:var(--mi);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:.6rem}
+.feat-item h4{font-size:.82rem;font-weight:600;color:var(--f);margin-bottom:.2rem}
+.feat-item p{font-size:.74rem;color:rgba(26,46,26,.55);line-height:1.5}
+
+/* GALLERY */
+.gallery-sec{background:var(--c)}
+.gal-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:180px;gap:10px}
+.gal-item{overflow:hidden;border-radius:4px;position:relative;cursor:pointer}
+.gal-item::after{content:'';position:absolute;inset:0;background:rgba(13,31,13,0);transition:background .3s}
+.gal-item:hover::after{background:rgba(13,31,13,.25)}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.gal-item:hover img{transform:scale(1.07)}
+.gal-item.a{grid-column:span 5;grid-row:span 2}
+.gal-item.b{grid-column:span 4}
+.gal-item.c{grid-column:span 3}
+.gal-item.d{grid-column:span 7}
+.gal-item.e{grid-column:span 4;grid-row:span 1}
+
+/* PACKAGES */
+.pkg-sec{background:var(--f)}
+.pkg-sec .section-eyebrow .line{background:var(--s)}
+.pkg-sec .section-eyebrow span{color:var(--s)}
+.pkg-sec h2.sec-title{color:var(--c)}
+.pkg-sec .sec-sub{color:rgba(244,239,228,.5)}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.pkg-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:2rem 1.8rem;border-radius:6px;position:relative;transition:background .3s,transform .3s,border-color .3s;overflow:hidden}
+.pkg-card::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .3s}
+.pkg-card:hover{background:rgba(255,255,255,.07);transform:translateY(-4px)}
+.pkg-card.pop{border-color:var(--g)}
+.pop-badge{position:absolute;top:0;right:0;background:var(--g);color:#fff;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .9rem;font-weight:600}
+.pkg-emoji{font-size:22px;margin-bottom:1.2rem;display:block}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--c);margin-bottom:.5rem;font-weight:600}
+.pkg-desc{font-size:.78rem;color:rgba(244,239,228,.45);line-height:1.65;margin-bottom:1.5rem;font-weight:300}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--g);line-height:1;margin-bottom:.3rem}
+.pkg-price sub{font-size:.75rem;font-family:'Outfit',sans-serif;color:rgba(244,239,228,.35)}
+.pkg-list{list-style:none;margin:1.2rem 0 1.8rem;display:flex;flex-direction:column;gap:.45rem}
+.pkg-list li{font-size:.77rem;color:rgba(244,239,228,.55);display:flex;align-items:center;gap:.6rem}
+.pkg-list li::before{content:'';width:4px;height:4px;background:var(--s);border-radius:50%;flex-shrink:0}
+.pkg-btn{width:100%;padding:.75rem;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(244,239,228,.8);font-family:'Outfit',sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .25s;font-weight:500}
+.pkg-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+.pkg-card.pop .pkg-btn{border-color:var(--g);color:var(--g)}
+.pkg-card.pop .pkg-btn:hover{background:rgba(200,168,75,.1)}
+
+/* BOOKING */
+.booking-sec{background:var(--c)}
+.booking-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(2rem,5vw,5rem);align-items:start;margin-top:clamp(2rem,4vw,3rem)}
+.book-info-body{font-size:.86rem;line-height:1.8;color:rgba(26,46,26,.6);margin:1rem 0 1.5rem;font-weight:300}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.check-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:.8rem;color:rgba(26,46,26,.65);line-height:1.55}
+.check-dot{width:7px;height:7px;background:var(--s);border-radius:50%;flex-shrink:0;margin-top:5px}
+.form-card{background:#fff;border-radius:8px;padding:clamp(1.5rem,3vw,2.2rem);border:1px solid rgba(26,46,26,.08)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-row.full{grid-template-columns:1fr}
+.fgroup{display:flex;flex-direction:column;gap:.35rem}
+.fgroup label{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(26,46,26,.5)}
+.fgroup input,.fgroup select,.fgroup textarea{padding:.7rem .9rem;border:1.5px solid rgba(26,46,26,.12);background:#fafaf8;font-family:'Outfit',sans-serif;font-size:.85rem;color:var(--f);outline:none;border-radius:4px;transition:border-color .2s,background .2s;width:100%}
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:var(--m);background:#fff}
+.fgroup textarea{resize:vertical;min-height:90px}
+.fgroup select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%231a2e1a' d='M5 6L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;background-size:10px;padding-right:2rem}
+.submit-row{margin-top:1rem}
+.submit-btn{width:100%;padding:.9rem;background:var(--f);color:var(--c);border:none;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:background .25s,transform .2s}
+.submit-btn:hover{background:var(--m);transform:translateY(-1px)}
+.success-card{display:none;background:var(--mi);border:1.5px solid var(--s);border-radius:6px;padding:1.2rem 1.5rem;text-align:center}
+.success-card p{font-size:.88rem;color:var(--f);line-height:1.6}
+.success-icon{font-size:24px;margin-bottom:.5rem;display:block}
+
+/* CONTACT */
+.contact-sec{background:var(--mi)}
+.contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-top:2.5rem}
+.ccard{background:#fff;padding:1.6rem;border-radius:6px;border:1px solid rgba(26,46,26,.06);transition:transform .25s}
+.ccard:hover{transform:translateY(-3px)}
+.ccard-icon{font-size:20px;margin-bottom:.8rem;display:block}
+.ccard h3{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--f);margin-bottom:.5rem}
+.ccard p{font-size:.78rem;color:rgba(26,46,26,.6);line-height:1.65}
+.map-wrap{margin-top:2rem;background:rgba(26,46,26,.07);border-radius:6px;height:180px;display:flex;align-items:center;justify-content:center;border:1px dashed rgba(26,46,26,.15)}
+.map-wrap span{font-size:.78rem;color:rgba(26,46,26,.35);letter-spacing:.06em;text-transform:uppercase}
+
+/* FOOTER */
+footer{background:var(--dk);padding:clamp(2rem,4vw,3rem) clamp(1.5rem,6vw,4.5rem)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--c)}
+.footer-logo span{color:var(--s)}
+.footer-tagline{font-size:.72rem;color:rgba(244,239,228,.3);margin-top:3px}
+.footer-links{display:flex;gap:1.2rem;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:.73rem;color:rgba(244,239,228,.4);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:var(--c)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;padding-top:1.2rem}
+.footer-copy{font-size:.72rem;color:rgba(244,239,228,.25)}
+.footer-social{display:flex;gap:.6rem}
+.soc-btn{width:30px;height:30px;border:1px solid rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;font-size:12px;color:rgba(244,239,228,.4)}
+.soc-btn:hover{border-color:rgba(255,255,255,.4);color:var(--c)}
+
+/* ANIMATE ON SCROLL */
+.anim{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.anim.visible{opacity:1;transform:translateY(0)}
+.anim-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.anim-left.visible{opacity:1;transform:translateX(0)}
+.anim-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.anim-right.visible{opacity:1;transform:translateX(0)}
+
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-stats{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .img-badge{bottom:-.8rem;right:-.5rem}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .gal-item.a,.gal-item.b,.gal-item.c,.gal-item.d,.gal-item.e{grid-column:span 1;grid-row:span 1}
+  .booking-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  .feat-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.5rem}
+  .hero-btns{flex-direction:column}
+  .btn-fill,.btn-ghost{text-align:center}
+}
+</style>
+
+<nav id="mainnav">
+  <div class="logo"><div class="logo-dot"></div>CAMPING<span style="color:var(--m)"> POINT</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#booking" class="nav-cta">Reserve</a></li>
+  </ul>
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span id="h1"></span><span id="h2"></span><span id="h3"></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#packages" onclick="closeMenu()">Packages</a>
+  <a href="#booking" onclick="closeMenu()">Book a Stay</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Eco Nature Retreat</span></div>
+    <h1>Sleep Under<br>the <em>Stars,</em><br>Wake to Nature</h1>
+    <p class="hero-desc">Immerse yourself in ancient forest. Our eco-certified retreat offers serene stays, guided trails, and unforgettable nights beneath an open sky.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-fill">Reserve Your Stay</a>
+      <a href="#packages" class="btn-ghost">View Packages</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Years</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">800+</div><div class="stat-label">Happy Guests</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Packages</div></div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <div class="scroll-pill"><div class="scroll-dot"></div></div>
+    <span class="scroll-txt">Scroll</span>
+  </div>
+</section>
+
+<section class="about-sec" id="about">
+  <div class="section-eyebrow anim"><div class="line"></div><span>Our Story</span></div>
+  <div class="about-grid">
+    <div class="img-frame anim-left">
+      <img src="IMAGES/group.JPEG" alt="Forest camping"/>
+      <div class="img-badge"><strong>12+</strong><span>Years of wild adventures</span></div>
+    </div>
+    <div class="about-text anim-right">
+      <h2 class="sec-title">A Sanctuary for Those Who Crave the Wild</h2>
+      <p class="about-body">Nestled in ancient forest, WildRoots Camp was founded on a simple belief — reconnecting with nature restores the soul. Our eco-retreat blends comfort with sustainability, leaving no trace but lasting memories.<br><br>Every tent, trail, and campfire is thoughtfully curated. We run on solar power, harvest rainwater, and source everything locally to protect the land we love.</p>
+      <div class="feat-grid">
+        <div class="feat-item anim"><div class="feat-icon-wrap">🌿</div><h4>Eco Certified</h4><p>Zero-waste, solar-powered facilities</p></div>
+        <div class="feat-item anim" style="transition-delay:.1s"><div class="feat-icon-wrap">🏕️</div><h4>Expert Guides</h4><p>Daily naturalist-led trail walks</p></div>
+        <div class="feat-item anim" style="transition-delay:.15s"><div class="feat-icon-wrap">🔥</div><h4>Campfire Nights</h4><p>Storytelling &amp; stargazing sessions</p></div>
+        <div class="feat-item anim" style="transition-delay:.2s"><div class="feat-icon-wrap">🌊</div><h4>Forest Streams</h4><p>Private access to natural water</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-sec" id="gallery">
+  <div class="gal-header">
+    <div>
+      <div class="section-eyebrow anim"><div class="line"></div><span>Photo Gallery</span></div>
+      <h2 class="sec-title anim">Life at WildRoots</h2>
+    </div>
+    <p class="sec-sub anim" style="max-width:280px;font-size:.82rem">Moments captured in the wild — misty mornings to golden campfire evenings.</p>
+  </div>
+  <div class="gal-grid anim">
+  <div class="gal-item a">
+    <img src="IMAGES/group.JPEG" alt="Forest camp"/>
+  </div>
+
+  <div class="gal-item b">
+    <img src="IMAGES/groupphoto.JPEG" alt="Campfire"/>
+  </div>
+
+  <div class="gal-item c">
+    <img src="IMAGES/tentPhoto.JPEG" alt="Tent in woods"/>
+  </div>
+
+  <div class="gal-item d">
+    <img src="IMAGES/oneMan.JPEG" alt="Nature trail"/>
+  </div>
+
+  <div class="gal-item e">
+    <img src="IMAGES/TENT.JPEG" alt="Mountains"/>
+  </div>
+</div>
+</section>
+
+<section class="pkg-sec" id="packages">
+  <div class="section-eyebrow anim"><div class="line"></div><span>Our Packages</span></div>
+  <h2 class="sec-title anim">Choose Your Adventure</h2>
+  <p class="sec-sub anim">From solo escapes to family retreats — find the perfect package for your journey.</p>
+  <div class="pkg-grid">
+    <div class="pkg-card anim"><span class="pkg-emoji">🌱</span><div class="pkg-name">Forest Escape</div><p class="pkg-desc">A quiet retreat for solo travellers or couples among ancient trees.</p><div class="pkg-price">₹2,499<sub> / night</sub></div><ul class="pkg-list"><li>Deluxe canvas tent for 2</li><li>Welcome bonfire &amp; dinner</li><li>Morning guided nature walk</li><li>Organic breakfast included</li></ul><button class="pkg-btn" onclick="scrollBook()">Book This Package</button></div>
+    <div class="pkg-card pop anim" style="transition-delay:.1s"><div class="pop-badge">Most Popular</div><span class="pkg-emoji">🏕️</span><div class="pkg-name">Wild Family Camp</div><p class="pkg-desc">A full family experience with activities for all ages in the heart of nature.</p><div class="pkg-price">₹5,999<sub> / night</sub></div><ul class="pkg-list"><li>Large family tent (up to 6)</li><li>All meals &amp; snacks included</li><li>Kids nature art workshops</li><li>Night sky stargazing session</li><li>Forest scavenger hunt</li></ul><button class="pkg-btn" onclick="scrollBook()">Book This Package</button></div>
+    <div class="pkg-card anim" style="transition-delay:.2s"><span class="pkg-emoji">✨</span><div class="pkg-name">Glamping Retreat</div><p class="pkg-desc">Luxury meets wilderness for those who want comfort without losing the wild.</p><div class="pkg-price">₹8,499<sub> / night</sub></div><ul class="pkg-list"><li>Furnished glamping tent</li><li>Private fire pit &amp; deck</li><li>Spa &amp; wellness session</li><li>Gourmet forest dining</li><li>Personal camp host</li></ul><button class="pkg-btn" onclick="scrollBook()">Book This Package</button></div>
+  </div>
+</section>
+
+<section class="booking-sec" id="booking">
+  <div class="section-eyebrow anim"><div class="line"></div><span>Reservations</span></div>
+  <h2 class="sec-title anim">Book Your Stay</h2>
+  <div class="booking-grid">
+    <div class="anim-left">
+      <p class="book-info-body">Ready to escape to the wild? Fill in your details and we'll confirm your booking within 24 hours. All packages include complimentary firewood, camp gear, and trail access.</p>
+      <ul class="check-list">
+        <li><span class="check-dot"></span>Free cancellation up to 7 days before arrival</li>
+        <li><span class="check-dot"></span>Check-in 2 PM · Check-out 11 AM</li>
+        <li><span class="check-dot"></span>Minimum 2 nights on weekends</li>
+        <li><span class="check-dot"></span>Pets welcome in designated areas</li>
+        <li><span class="check-dot"></span>30% deposit required at booking</li>
+      </ul>
+    </div>
+    <div class="anim-right">
+      <div class="form-card" id="formWrap">
+        <div class="form-row">
+          <div class="fgroup"><label>First Name</label><input type="text" placeholder="Aarav"/></div>
+          <div class="fgroup"><label>Last Name</label><input type="text" placeholder="Sharma"/></div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup"><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+          <div class="fgroup"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"/></div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup"><label>Check-In</label><input type="date"/></div>
+          <div class="fgroup"><label>Check-Out</label><input type="date"/></div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup"><label>Package</label><select><option>Forest Escape — ₹2,499/night</option><option>Wild Family Camp — ₹5,999/night</option><option>Glamping Retreat — ₹8,499/night</option></select></div>
+          <div class="fgroup"><label>Guests</label><select><option>1 Guest</option><option>2 Guests</option><option>3–4 Guests</option><option>5–6 Guests</option></select></div>
+        </div>
+        <div class="form-row full">
+          <div class="fgroup"><label>Special Requests</label><textarea placeholder="Dietary requirements, accessibility needs, or special occasions..."></textarea></div>
+        </div>
+        <div class="submit-row"><button class="submit-btn" onclick="submitForm()">Confirm Reservation</button></div>
+      </div>
+      <div class="success-card" id="successCard"><span class="success-icon">✓</span><p>Your booking request has been received!<br>We'll confirm within 24 hours via email.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-sec" id="contact">
+  <div class="section-eyebrow anim"><div class="line"></div><span>Find Us</span></div>
+  <h2 class="sec-title anim">Get in Touch</h2>
+  <p class="sec-sub anim">We'd love to hear from you before your visit — or just say hello from the trail.</p>
+  <div class="contact-cards">
+    <div class="ccard anim"><span class="ccard-icon">📍</span><h3>Location</h3><p>Forest Hills, Near Riverside Trail<br>Kodaikanal, Tamil Nadu<br>India — 624 101</p></div>
+    <div class="ccard anim" style="transition-delay:.1s"><span class="ccard-icon">📞</span><h3>Contact</h3><p>+91 6372084501<br>hello@wildrootscamp.in<br>Mon–Sun, 8 AM – 7 PM</p></div>
+    <div class="ccard anim" style="transition-delay:.2s"><span class="ccard-icon">🗺️</span><h3>Getting Here</h3><p>45 min from Kodaikanal Bus Stand. Pickup service available. Follow signs to Forest Hills Retreat.</p></div>
+  </div>
+  <div class="map-wrap anim"><span>[ Embed Google Maps Here ]</span></div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">Wild<span>Roots</span> Camp</div><p class="footer-tagline">Eco Nature Retreat · Kodaikanal, India</p></div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#booking">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 WildRoots Eco Retreat. All rights reserved.</p>
+    <div class="footer-social">
+      <div class="soc-btn">f</div>
+      <div class="soc-btn">in</div>
+      <div class="soc-btn">ig</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  var h1=document.getElementById('h1'),h2=document.getElementById('h2'),h3=document.getElementById('h3');
+  var open=m.classList.toggle('open');
+  if(open){h1.style.transform='rotate(45deg) translate(5px,5px)';h2.style.opacity='0';h3.style.transform='rotate(-45deg) translate(5px,-5px)'}
+  else{h1.style.transform='';h2.style.opacity='';h3.style.transform=''}
+}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('h1').style.transform='';document.getElementById('h2').style.opacity='';document.getElementById('h3').style.transform=''}
+function scrollBook(){document.getElementById('booking').scrollIntoView({behavior:'smooth'})}
+function submitForm(){document.getElementById('formWrap').style.display='none';var s=document.getElementById('successCard');s.style.display='block'}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
+document.querySelectorAll('.anim,.anim-left,.anim-right').forEach(function(el){obs.observe(el)});
+</script>
